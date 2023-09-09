@@ -19,6 +19,10 @@ public class Player : MonoBehaviour
     public float animationDuration = .3f;
     public Ease ease = Ease.OutBack;
 
+    [Header("Animation Player")]
+    public Animator animator;
+    public string animationTrigger = "PlayerRun";
+
     private float _currentSpeed;
 
     // public Vector2 velocity;
@@ -41,11 +45,19 @@ public class Player : MonoBehaviour
         {
             // myRigibody.MovePosition(myRigibody.position - velocity * Time.deltaTime);
             myRigibody.velocity = new Vector2(-_currentSpeed, myRigibody.velocity.y);
+            myRigibody.transform.localScale = new Vector3(-1, 1,1);
+            OnPlayerRun(true);
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
             //myRigibody.MovePosition(myRigibody.position + velocity * Time.deltaTime);
             myRigibody.velocity = new Vector2(_currentSpeed, myRigibody.velocity.y);
+            myRigibody.transform.localScale = new Vector3(1, 1, 1);
+
+            OnPlayerRun(true);
+        }else
+        {
+            OnPlayerRun(false);
         }
 
         if (myRigibody.velocity.x > 0)
@@ -75,6 +87,11 @@ public class Player : MonoBehaviour
     private void ScaleToJump()
     {
         myRigibody.transform.DOScaleY(jumpScaleY, animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);
-        myRigibody.transform.DOScaleX(jumpScaleX, animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);
+        // myRigibody.transform.DOScaleX(jumpScaleX, animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);
+    }
+
+    private void OnPlayerRun(bool isRun)
+    {
+        animator.SetBool(animationTrigger, isRun);
     }
 }
