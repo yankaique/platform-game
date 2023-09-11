@@ -330,7 +330,9 @@ MonoBehaviour:
   damage: 5
   animator: {fileID: 1210134101}
   triggerAttack: Enemy_Attack
+  triggerDeath: Enemy_Death
   healthBase: {fileID: 30521095}
+  timeToDestroy: 1
 --- !u!210 &30521094
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -355,7 +357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startLife: 10
-  destroyOnKill: 1
+  destroyOnKill: 0
   delayToKill: 0
   _flashColor: {fileID: 1210134102}
 --- !u!50 &30521096
@@ -1844,7 +1846,9 @@ MonoBehaviour:
   damage: 10
   animator: {fileID: 0}
   triggerAttack: Enemy_Attack
+  triggerDeath: Enemy_Death
   healthBase: {fileID: 0}
+  timeToDestroy: 1
 --- !u!61 &580737465
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2608,6 +2612,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myRigibody: {fileID: 783886572}
+  healthBase: {fileID: 783886576}
   speed: 10
   speedRun: 30
   forceJump: 15
@@ -2618,6 +2623,7 @@ MonoBehaviour:
   ease: 27
   animator: {fileID: 345506738}
   animationTrigger: PlayerRun
+  animationTriggerDeath: Player_Death
 --- !u!114 &783886576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2631,8 +2637,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startLife: 10
-  destroyOnKill: 1
-  delayToKill: 5
+  destroyOnKill: 0
+  delayToKill: 1
   _flashColor: {fileID: 0}
 --- !u!210 &783886577
 SortingGroup:
@@ -6059,6 +6065,24 @@ Transform:
   m_Father: {fileID: 1686760904}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1883853712 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8835229685202505509, guid: 00afc9fb4087652419d090da0b825d97, type: 3}
+  m_PrefabInstance: {fileID: 1933754766}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1883853713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1883853712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89aed589d6178fe43a7a36f5a54f50a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 783886575}
 --- !u!1 &1912787987
 GameObject:
   m_ObjectHideFlags: 0
@@ -6177,6 +6201,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 783886574}
     m_Modifications:
+    - target: {fileID: 484439071244248233, guid: 00afc9fb4087652419d090da0b825d97, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4408004527330560093, guid: 00afc9fb4087652419d090da0b825d97, type: 3}
       propertyPath: timeBetweenShoot
       value: 1
