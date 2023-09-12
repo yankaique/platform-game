@@ -15,9 +15,14 @@ public class Player : MonoBehaviour
     public Vector2 friction = new Vector2(.1f, 0);
 
     [Header("Animation Setup")]
-    public float jumpScaleY = 1.5f;
-    public float jumpScaleX = 1.7f;
-    public float animationDuration = .3f;
+    public SOFloat soJumpScaleY;
+    public SOFloat soAnimationDuration;
+    // public float jumpScaleY = 1.5f;
+    // public float animationDuration = .3f;
+    //public float jumpScaleX = 1.7f;
+    //public SOFloat soJumpScaleX;
+
+
     public Ease ease = Ease.OutBack;
 
     [Header("Animation Player")]
@@ -104,7 +109,7 @@ public class Player : MonoBehaviour
 
     private void ScaleToJump()
     {
-        myRigibody.transform.DOScaleY(jumpScaleY, animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);
+        myRigibody.transform.DOScaleY(soJumpScaleY.Value, soAnimationDuration.Value).SetLoops(2, LoopType.Yoyo).SetEase(ease);
         // myRigibody.transform.DOScaleX(jumpScaleX, animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);
     }
 

@@ -16,6 +16,5 @@ public class SOUIIntUpdate : MonoBehaviour
     private void Update()
     {
         uiTextValue.text = soInt.Value.ToString();
-
     }
 }

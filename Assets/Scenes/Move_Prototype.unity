@@ -2798,9 +2798,8 @@ MonoBehaviour:
   speedRun: 30
   forceJump: 15
   friction: {x: 0.1, y: 0}
-  jumpScaleY: 1.5
-  jumpScaleX: 1.7
-  animationDuration: 0.3
+  soJumpScaleY: {fileID: 11400000, guid: 24b02e506065369459a5711ae3fee16a, type: 2}
+  soAnimationDuration: {fileID: 11400000, guid: 4b4439b7f152a2d41b416b324e03d842, type: 2}
   ease: 27
   animator: {fileID: 345506738}
   animationTrigger: PlayerRun
