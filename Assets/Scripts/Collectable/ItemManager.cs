@@ -5,7 +5,7 @@ using UnityEngine;
 using Ebac.core.Singleton;
 public class ItemManager : Singleton<ItemManager>
 {
-    public int coins;
+    public SOInt coins;
     public TextMeshProUGUI uiTextCoins;
 
     private void Start()
@@ -16,19 +16,11 @@ public class ItemManager : Singleton<ItemManager>
 
     private void Reset()
     {
-        coins = 0;
-        UpdateUI();
+        coins.Value = 0;
     }
 
     public void AddCoins(int amount = 1)
     {
-        coins += amount;
-        UpdateUI();
-    }
-
-    private void UpdateUI()
-    {
-        //uiTextCoins.text = coins.ToString();
-        UiInGameManager.UpdateTextCoin(coins.ToString());
+        coins.Value += amount;
     }
 }
