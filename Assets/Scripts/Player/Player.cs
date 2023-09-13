@@ -8,11 +8,8 @@ public class Player : MonoBehaviour
     public Rigidbody2D myRigibody;
     public HealthBase healthBase;
 
-    [Header("Speed Setup")]
-    public float speed;
-    public float speedRun;
-    public float forceJump = 2;
-    public Vector2 friction = new Vector2(.1f, 0);
+    [Header("Setup")]
+    public SOPlayerSetup sOPlayerSetup;
 
     [Header("Animation Setup")]
     public SOFloat soJumpScaleY;
@@ -27,8 +24,6 @@ public class Player : MonoBehaviour
 
     [Header("Animation Player")]
     public Animator animator;
-    public string animationTrigger = "PlayerRun";
-    public string animationTriggerDeath = "Player_Death";
 
     private float _currentSpeed;
 
@@ -46,7 +41,7 @@ public class Player : MonoBehaviour
     private void OnPlayerKill()
     {
         healthBase.OnKill -= OnPlayerKill;
-        animator.SetTrigger(animationTriggerDeath);
+        animator.SetTrigger(sOPlayerSetup.animationTriggerDeath);
     }
 
     void Update()
@@ -58,10 +53,10 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            _currentSpeed = speedRun;
+            _currentSpeed = sOPlayerSetup.speedRun;
         }else
         {
-            _currentSpeed = speed;
+            _currentSpeed = sOPlayerSetup.speed;
         }
 
         if (Input.GetKey(KeyCode.LeftArrow))
@@ -85,11 +80,11 @@ public class Player : MonoBehaviour
 
         if (myRigibody.velocity.x > 0)
         {
-            myRigibody.velocity -= friction;
+            myRigibody.velocity -= sOPlayerSetup.friction;
         }
         else if (myRigibody.velocity.x < 0)
         {
-            myRigibody.velocity += friction;
+            myRigibody.velocity += sOPlayerSetup.friction;
         }
     }
 
@@ -98,7 +93,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             // myRigibody.MovePosition(myRigibody.position - velocity * Time.deltaTime);
-            myRigibody.velocity = Vector2.up * forceJump;
+            myRigibody.velocity = Vector2.up * sOPlayerSetup.forceJump;
 
             myRigibody.transform.localScale = Vector2.one;
             DOTween.Kill(myRigibody.transform);
@@ -115,7 +110,7 @@ public class Player : MonoBehaviour
 
     private void OnPlayerRun(bool isRun)
     {
-        animator.SetBool(animationTrigger, isRun);
+        animator.SetBool(sOPlayerSetup.animationTrigger, isRun);
     }
 
     public void DestroyMe()

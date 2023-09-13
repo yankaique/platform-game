@@ -2794,16 +2794,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myRigibody: {fileID: 783886572}
   healthBase: {fileID: 783886576}
-  speed: 10
-  speedRun: 30
-  forceJump: 15
-  friction: {x: 0.1, y: 0}
+  sOPlayerSetup: {fileID: 11400000, guid: 75cf75c0e21733142b0bc9843ffe7a68, type: 2}
   soJumpScaleY: {fileID: 11400000, guid: 24b02e506065369459a5711ae3fee16a, type: 2}
   soAnimationDuration: {fileID: 11400000, guid: 4b4439b7f152a2d41b416b324e03d842, type: 2}
   ease: 27
   animator: {fileID: 345506738}
-  animationTrigger: PlayerRun
-  animationTriggerDeath: Player_Death
 --- !u!114 &783886576
 MonoBehaviour:
   m_ObjectHideFlags: 0
