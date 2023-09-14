@@ -16,7 +16,6 @@ public class ItemCollectableBase : MonoBehaviour
     }
     protected virtual void Collect()
     {
-        Debug.Log("Encostou na moeda");
         gameObject.SetActive(false);
         OnCollect();
     }

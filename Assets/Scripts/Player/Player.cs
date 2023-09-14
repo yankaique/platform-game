@@ -12,6 +12,9 @@ public class Player : MonoBehaviour
     public SOPlayerSetup sOPlayerSetup;
 
     [Header("Animation Setup")]
+    public Animator animator;
+
+    [Header("Movements SO")]
     public SOFloat soJumpScaleY;
     public SOFloat soAnimationDuration;
     // public float jumpScaleY = 1.5f;
@@ -24,7 +27,6 @@ public class Player : MonoBehaviour
     public Ease ease = Ease.OutBack;
 
     private float _currentSpeed;
-    private Animator _currentPlayer;
 
     private void Awake()
     {
@@ -32,14 +34,12 @@ public class Player : MonoBehaviour
         {
             healthBase.OnKill += OnPlayerKill;
         }
-
-        _currentPlayer = Instantiate(sOPlayerSetup.player, transform);
     }
 
     private void OnPlayerKill()
     {
         healthBase.OnKill -= OnPlayerKill;
-        _currentPlayer.SetTrigger(sOPlayerSetup.animationTriggerDeath);
+        animator.SetTrigger(sOPlayerSetup.animationTriggerDeath);
     }
 
     void Update()
@@ -108,7 +108,7 @@ public class Player : MonoBehaviour
 
     private void OnPlayerRun(bool isRun)
     {
-        _currentPlayer.SetBool(sOPlayerSetup.animationTrigger, isRun);
+        animator.SetBool(sOPlayerSetup.animationTrigger, isRun);
     }
 
     public void DestroyMe()

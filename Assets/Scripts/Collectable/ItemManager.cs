@@ -21,6 +21,7 @@ public class ItemManager : Singleton<ItemManager>
 
     public void AddCoins(int amount = 1)
     {
+        Debug.Log(amount);
         coins.Value += amount;
     }
 }
