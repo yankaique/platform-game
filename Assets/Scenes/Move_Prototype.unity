@@ -6694,6 +6694,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PFB_ParticleSystem
       objectReference: {fileID: 0}
+    - target: {fileID: 558759820833375465, guid: 43b9fe6de6a94cc46acb9b43975e8708, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 558759820833375476, guid: 43b9fe6de6a94cc46acb9b43975e8708, type: 3}
       propertyPath: m_RootOrder
       value: 10

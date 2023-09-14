@@ -5,6 +5,8 @@ using UnityEngine;
 public class ItemCollectableBase : MonoBehaviour
 {
     public string compareTag = "Player";
+    public ParticleSystem particleSystem;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
      
