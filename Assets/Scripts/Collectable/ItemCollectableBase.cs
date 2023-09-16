@@ -8,6 +8,7 @@ public class ItemCollectableBase : MonoBehaviour
     public ParticleSystem particleSystem;
     public float timeToHideParticle = .3f;
     public GameObject graphicItem;
+    public AudioSource audioSource;
 
     private void Awake()
     {
@@ -47,6 +48,11 @@ public class ItemCollectableBase : MonoBehaviour
         if(particleSystem != null)
         {
             particleSystem.Play();
+        }
+
+        if(audioSource != null)
+        {
+            audioSource.Play();
         }
     }
 
