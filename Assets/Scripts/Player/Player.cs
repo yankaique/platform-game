@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     [Header("Movements SO")]
     public SOFloat soJumpScaleY;
     public SOFloat soAnimationDuration;
+    public ParticleSystem runParticle;
     // public float jumpScaleY = 1.5f;
     // public float animationDuration = .3f;
     //public float jumpScaleX = 1.7f;
@@ -30,11 +31,11 @@ public class Player : MonoBehaviour
     public Collider2D collider2D;
     public float distToGround;
     public float spaceToGround = .1f;
-    public ParticleSystem jumpVFX;
 
 
     private float _currentSpeed;
 
+    #region Unity essentials
     private void Awake()
     {
         if(healthBase != null)
@@ -48,29 +49,22 @@ public class Player : MonoBehaviour
         }
     }
 
-    private bool IsGrounded()
-    {
-        return Physics2D.Raycast(transform.position, -Vector2.up, distToGround + spaceToGround);
-    }
-
-    private void OnPlayerKill()
-    {
-        healthBase.OnKill -= OnPlayerKill;
-        animator.SetTrigger(sOPlayerSetup.animationTriggerDeath);
-    }
-
     void Update()
     {
         IsGrounded();
         HandleMovement();
         HandleJump();
     }
+    #endregion
+
+    #region Run
     private void HandleMovement()
     {
         if (Input.GetKey(KeyCode.LeftShift))
         {
             _currentSpeed = sOPlayerSetup.speedRun;
-        }else
+        }
+        else
         {
             _currentSpeed = sOPlayerSetup.speed;
         }
@@ -79,7 +73,7 @@ public class Player : MonoBehaviour
         {
             // myRigibody.MovePosition(myRigibody.position - velocity * Time.deltaTime);
             myRigibody.velocity = new Vector2(-_currentSpeed, myRigibody.velocity.y);
-            myRigibody.transform.localScale = new Vector3(-1, 1,1);
+            myRigibody.transform.localScale = new Vector3(-1, 1, 1);
             OnPlayerRun(true);
         }
         else if (Input.GetKey(KeyCode.RightArrow))
@@ -89,7 +83,8 @@ public class Player : MonoBehaviour
             myRigibody.transform.localScale = new Vector3(1, 1, 1);
 
             OnPlayerRun(true);
-        }else
+        }
+        else
         {
             OnPlayerRun(false);
         }
@@ -102,6 +97,18 @@ public class Player : MonoBehaviour
         {
             myRigibody.velocity += sOPlayerSetup.friction;
         }
+    }
+
+    private void OnPlayerRun(bool isRun)
+    {
+        animator.SetBool(sOPlayerSetup.animationTrigger, isRun);
+    }
+    #endregion
+
+    #region Jump
+    private bool IsGrounded()
+    {
+        return Physics2D.Raycast(transform.position, -Vector2.up, distToGround + spaceToGround);
     }
 
     private void HandleJump()
@@ -119,6 +126,27 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void ScaleToJump()
+    {
+        myRigibody.transform.DOScaleY(soJumpScaleY.Value, soAnimationDuration.Value).SetLoops(2, LoopType.Yoyo).SetEase(ease);
+        // myRigibody.transform.DOScaleX(jumpScaleX, animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);
+    }
+    #endregion
+
+    #region Death
+    private void OnPlayerKill()
+    {
+        healthBase.OnKill -= OnPlayerKill;
+        animator.SetTrigger(sOPlayerSetup.animationTriggerDeath);
+    }
+
+    public void DestroyMe()
+    {
+        Destroy(gameObject);
+    }
+    #endregion
+
+    #region VFX
     private void PlayJumpVFX()
     {
         /*if(jumpVFX != null)
@@ -128,20 +156,5 @@ public class Player : MonoBehaviour
 
         VFXManager.Instance.PlayVFXByType(VFXManager.VFXType.JUMP, transform.position);
     }
-
-    private void ScaleToJump()
-    {
-        myRigibody.transform.DOScaleY(soJumpScaleY.Value, soAnimationDuration.Value).SetLoops(2, LoopType.Yoyo).SetEase(ease);
-        // myRigibody.transform.DOScaleX(jumpScaleX, animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);
-    }
-
-    private void OnPlayerRun(bool isRun)
-    {
-        animator.SetBool(sOPlayerSetup.animationTrigger, isRun);
-    }
-
-    public void DestroyMe()
-    {
-        Destroy(gameObject);
-    }
+    #endregion
 }
