@@ -31,6 +31,8 @@ public class Player : MonoBehaviour
     public float distToGround;
     public float spaceToGround = .1f;
 
+    [Header("Player Death")]
+    public GameObject uiPlayerDeath;
 
     private float _currentSpeed;
 
@@ -142,6 +144,10 @@ public class Player : MonoBehaviour
     {
         healthBase.OnKill -= OnPlayerKill;
         animator.SetTrigger(sOPlayerSetup.animationTriggerDeath);
+        if(uiPlayerDeath != null)
+        {
+            uiPlayerDeath.SetActive(true);
+        }
     }
 
     public void DestroyMe()
