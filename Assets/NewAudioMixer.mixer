@@ -44,11 +44,17 @@ AudioMixerController:
   m_MasterGroup: {fileID: 24300002}
   m_Snapshots:
   - {fileID: 24500006}
+  - {fileID: 1858804501992012856}
+  - {fileID: 755541257213671989}
   m_StartSnapshot: {fileID: 24500006}
-  m_SuspendThreshold: -80
+  m_SuspendThreshold: -37.8
   m_EnableSuspend: 1
   m_UpdateMode: 0
-  m_ExposedParameters: []
+  m_ExposedParameters:
+  - guid: c139e20fe202b4a45acb0c88394af8ef
+    name: VolumeAmbience
+  - guid: a8963c2deae23294db0a0d9ece5ec3d2
+    name: VolumeSFX
   m_AudioMixerGroupViews:
   - guids:
     - 0b32ec28c6f8bae499f4f68de979d251
@@ -56,7 +62,7 @@ AudioMixerController:
     - c70d2c777f35a444f8dd94998ce74466
     name: View
   m_CurrentViewIndex: 0
-  m_TargetSnapshot: {fileID: 24500006}
+  m_TargetSnapshot: {fileID: 755541257213671989}
 --- !u!243 &24300002
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -104,6 +110,19 @@ AudioMixerSnapshotController:
   m_FloatValues:
     c139e20fe202b4a45acb0c88394af8ef: -7.8940816
   m_TransitionOverrides: {}
+--- !u!245 &755541257213671989
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Menu
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: cf7bcd860a6474b418126beb82d731f8
+  m_FloatValues:
+    a8963c2deae23294db0a0d9ece5ec3d2: -75.198944
+    c139e20fe202b4a45acb0c88394af8ef: -72.78722
+  m_TransitionOverrides: {}
 --- !u!244 &1209572562281180099
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -118,6 +137,18 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!245 &1858804501992012856
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Ingame
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: c53eb50f6f5d152458753880184d3a51
+  m_FloatValues:
+    c139e20fe202b4a45acb0c88394af8ef: -7.8940816
+  m_TransitionOverrides: {}
 --- !u!243 &8004724836381867591
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
