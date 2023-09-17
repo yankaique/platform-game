@@ -23,10 +23,10 @@ public class ProjectileBase : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        var enemy = collision.transform.GetComponent<EnemyBase>();
-        Debug.Log(enemy);
+
         if (collision != null)
         {
+        var enemy = collision.transform.GetComponent<EnemyBase>();
             enemy.Damage(damageAmount);
             Destroy(gameObject);
         }

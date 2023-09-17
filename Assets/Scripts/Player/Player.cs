@@ -34,6 +34,9 @@ public class Player : MonoBehaviour
     [Header("Player Death")]
     public GameObject uiPlayerDeath;
 
+    [Header("Sound")]
+    public AudioSource jumpSound;
+
     private float _currentSpeed;
 
     #region Unity essentials
@@ -127,8 +130,12 @@ public class Player : MonoBehaviour
 
             myRigibody.transform.localScale = Vector2.one;
             DOTween.Kill(myRigibody.transform);
-
+            
             ScaleToJump();
+
+            if (jumpSound != null) {
+                jumpSound.Play();
+            } 
         }
     }
 

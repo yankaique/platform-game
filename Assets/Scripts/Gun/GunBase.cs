@@ -4,10 +4,17 @@ using UnityEngine;
 
 public class GunBase : MonoBehaviour
 {
+    [Header("Prefabs")]
     public ProjectileBase prefabProjectile;
     public Transform positionToShoot;
-    public float timeBetweenShoot = 1f;
     public Transform playerSideReference;
+
+    [Header("Props")]
+    public float timeBetweenShoot = 1f;
+
+
+    [Header("Sound")]
+    public AudioSource shootSound;
 
     private Coroutine _currentCoroutine;
 
@@ -39,5 +46,6 @@ public class GunBase : MonoBehaviour
         var projectile = Instantiate(prefabProjectile);
         projectile.transform.position = positionToShoot.position;
         projectile.side = playerSideReference.transform.localScale.x;
+        shootSound.Play();
     }
 }

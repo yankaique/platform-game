@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b7e3e09eb32e4140905d9958932609b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: {x: 3, y: 0, z: 0}
+  direction: {x: 10, y: 0, z: 0}
   timeToDestroy: 2
   side: 1
   damageAmount: 1
