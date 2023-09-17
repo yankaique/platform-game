@@ -7,13 +7,14 @@ public class VFXManager : Singleton<VFXManager>
 {
     public enum VFXType
     {
+        RUN,
         JUMP,
         VFX_2
     }
 
     public List<VFXManagerSetup> vfxSetup;
 
-    public void PlayVFXByType(VFXType vfxType, Vector2 position)
+    public void PlayVFXByType(VFXType vfxType, Vector3 position)
     {
         foreach(var i in vfxSetup)
         {

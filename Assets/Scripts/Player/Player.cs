@@ -17,7 +17,6 @@ public class Player : MonoBehaviour
     [Header("Movements SO")]
     public SOFloat soJumpScaleY;
     public SOFloat soAnimationDuration;
-    public ParticleSystem runParticle;
     // public float jumpScaleY = 1.5f;
     // public float animationDuration = .3f;
     //public float jumpScaleX = 1.7f;
@@ -101,6 +100,11 @@ public class Player : MonoBehaviour
 
     private void OnPlayerRun(bool isRun)
     {
+        if(isRun)
+        {
+            PlayRunVFX();
+        }
+
         animator.SetBool(sOPlayerSetup.animationTrigger, isRun);
     }
     #endregion
@@ -155,6 +159,15 @@ public class Player : MonoBehaviour
         }*/
 
         VFXManager.Instance.PlayVFXByType(VFXManager.VFXType.JUMP, transform.position);
+    }
+
+    private void PlayRunVFX()
+    {
+        var isGrounded = IsGrounded();
+        if (isGrounded)
+        {
+            VFXManager.Instance.PlayVFXByType(VFXManager.VFXType.RUN, transform.position);
+        }
     }
     #endregion
 }
